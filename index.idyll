@@ -1,0 +1,137 @@
+[meta title:"Andi Zenku, Final Part 3" description:"This is the Third part of the final." /]
+
+[Header
+  fullWidth:true
+  title:"Final Part 3"
+  subtitle:"Analysis of the most recent World Happiness Report (2020)"
+  author:"Andi Zenku"
+  authorLink:"https://github.com/azenku/azenku.github.io"
+  date:"May 9, 2021"
+  background:"#f4b046"
+  color:"#0b7460"
+   /]
+
+[var name:"x" value:0 /]
+
+## Introduction
+
+As many of us know, it has been a challanging year for all of us. The Covid-19
+pandemic threw the world out of order, but this far in 2021 it seems that we are
+finally seeing glimpses of the end. With vaccines becoming more and more readily available,
+I believe now is a time to reflect on how the world was in 2020. I found the
+2020 World Happiness Report formatted into a dataset, which will allow us to explore the
+variables that were recorded. By exploring this dataset I wanted to discover if
+certain traits in countries lead to not only higher happiness ratings but also
+if they correlate with longer healthy life expectancy.
+
+## 2020 Dataset.
+[data name:'happy' source:'2020.csv' /]
+
+[Table data:happy /]
+
+[World Happiness Report up to 2020.](https://www.kaggle.com/mathurinache/world-happiness-report?select=2020.csv)
+
+As shown above, this dataset doesn't exemplify the data well enough. I decided to
+explore more of it to see potential connections or possible correlations.
+Most of the other columns are numbers like social support and health life expectancy,
+where social support is a scale of how that specific country puts importance on social support
+and the latter being the average healthy life expectancy of that country. There are other columns
+that deal with values like social support, for example there is generosity and freedom to make life choices.
+These help capture the mindsets of the countries and possibly reigons, allowing us to compare if mindsets can
+lead to longer lives.
+
+
+
+## 2020 Happiness Report grouped by Regions.
+
+[var name:'radios' value:'Ladder score' /]
+
+[Select value:radios options:`['Ladder score','Logged GDP per capita', 'Social support', 'Healthy life expectancy','Freedom to make life choices','Explained by: Generosity']`  /]
+
+
+
+
+[IdyllVegaLite data:happy spec:`{
+  mark: {type:"bar",'stroke':'black'},
+  width:500,
+  height:400,
+  encoding: {
+    x: {field:"Regional indicator", type:"ordinal"},
+	  y: {aggregate:'mean',field:radios, type:"quantitative"},
+    color: {"value": "#0b7460"}
+  }
+}`
+/]
+
+
+First of all, I have created an interactive bar graph seperating the countries into reigons, then aggregating and averaging their scores on the Happiness Report. This bar graph allows you to compare the reigons in the variables given during the Happiness Report. For example, you can see which reigons had higher GDP per capita, their "Ladder scores" which means how high they ranked on the Happiness Report overall or how they scaled in social support as a reigon. This helps you visualize the dataset and its qualities for reigons as a whole, not just specific countries.
+
+
+
+## 2020 Happiness Report Factors Compared to Healthy Life Expectancy.
+[var name:'radios2' value:'Ladder score' /]
+
+[Select value:radios2 options:`['Ladder score','Logged GDP per capita', 'Social support', 'Freedom to make life choices','Explained by: Generosity']`  /]
+
+[IdyllVegaLite data:happy spec:`{
+  mark: {'type':"point",'filled':'true','size':'100','stroke':'black'},
+  width:500,
+  height:400,
+  encoding: {
+    x: {field:"Healthy life expectancy", type:"quantitative","scale": {"domain": [40, 80]}},
+	  y: {field:radios2, type:"quantitative"},
+    color: {field:'Ladder score',type:'quantitative',"scale": {"scheme": "viridis"}}
+  }
+
+}`
+/]
+
+Here I have created an interesting scatter plot which plots each countries data entries.
+You can choose a variable to compare against one of the more interesting variables, Healthy life expectancy.
+I created this graph to allow you to see possible correlations from data in the Happiness Report and if
+they could possibly lead to a longer life. I also used a coloring scale by the Ladder scale,
+so no matter what variables you change you can see which data entries have the highest scores
+(yellow being highest). Seeing how the variables compare to Healthy life expectancy could lead to revelations
+on what is necessary to live longer lives on average. One variable to note is
+the Logged GDP per capita. This seems to hold the highest correlation out of all variables
+and looks to be directly and positively related to a healthy life expectancy for that country.
+It makes sense that a country with a high GDP has a higher life expectancy, but what is more
+interesting is looking at the variable Social support. This also boasts a high positive relation
+to the healthy life expectancy, which shows that countries that hold social support
+in a high regard also likely have a higher life expectancy.
+
+
+
+
+
+
+## Offical Ranking of Happiness.
+![quill](static/images/HappyRank2019.png)
+[Offical World Happiness Report. (2020)](https://worldhappiness.report/ed/2020/social-environments-for-world-happiness/)
+
+Finally we have here the top 52 Happiest countries according to the World Happiness report.
+In their visualization we can see the list of the highest with a bar graph and colored sections
+that show the variables taken into account. This is the cummulative report compared to  my
+specific graphs I have created above to explain some possible correlations like which regions are seen
+to be more happy and what variables have a positive trend that seem to lead to longer lives.
+Here we see everything sectioned out and right in front of us, but with one confusing variable I left out of my
+graphs. The Dystopia variable is a made up country that has the lowest recorded scores in all catagories.
+It basically is a benchmark that gives each country a positive contribution from all of their factors that are above the minimum.
+Since this was a benchmark I left it out of my personal calculations.
+
+
+
+
+## Informaion about the Happiness Factors.
+![quill](static/images/HappyEx.png)
+[Offical World Happiness Report. (2020)](https://worldhappiness.report/ed/2020/social-environments-for-world-happiness/)
+
+Here we have an explaination for how they gathered the data for their factors of Happiness.
+Notable entries are the explanation of social support where they recorded data from
+the Gallup World Poll with a question asking if you had friends or family that could help you,
+and also both freedom to make life choices and generosity where they also got information from the Gallup
+World Poll. This information can help explain how they exactly calculated these factors that
+have an effect on happiness.
+
+
+### Thank you for reading, and Be Happy!
