@@ -58,7 +58,7 @@ lead to longer lives.
   encoding: {
     x: {field:"Regional indicator", type:"ordinal"},
 	  y: {aggregate:'mean',field:radios, type:"quantitative"},
-    color: {"value": "#0b7460"}
+    color: {"value": "#022300"}
   }
 }`
 /]
